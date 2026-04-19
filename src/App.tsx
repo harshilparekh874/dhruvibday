@@ -14,7 +14,6 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Candle } from "./models/candle";
 import { Cake } from "./models/cake";
 import { Table } from "./models/table";
-import { PictureFrame } from "./models/pictureFrame";
 import { Fireworks } from "./components/Fireworks";
 import { BirthdayCard } from "./components/BirthdayCard";
 
@@ -267,30 +266,6 @@ function AnimatedScene({
     <>
       <group ref={tableGroup}>
         <Table />
-        <PictureFrame
-          image="/frame2.jpg"
-          position={[0, 0.735, 3]}
-          rotation={[0, 5.6, 0]}
-          scale={0.75}
-        />
-        <PictureFrame
-          image="/frame3.jpg"
-          position={[0, 0.735, -3]}
-          rotation={[0, 4.0, 0]}
-          scale={0.75}
-        />
-        <PictureFrame
-          image="/frame4.jpg"
-          position={[0, 0.735, 2.5]}
-          rotation={[0, 5.4, 0]}
-          scale={0.75}
-        />
-        <PictureFrame
-          image="/frame1.jpg"
-          position={[-1.5, 0.735, -2.5]}
-          rotation={[0, 4.2, 0]}
-          scale={0.75}
-        />
         {cards.map((card) => (
           <BirthdayCard
             key={card.id}
