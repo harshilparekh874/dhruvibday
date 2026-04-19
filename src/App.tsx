@@ -92,6 +92,7 @@ const CURSOR_BLINK_INTERVAL = 480;
 type BirthdayCardConfig = {
   id: string;
   image: string;
+  backImage?: string;
   position: [number, number, number];
   rotation: [number, number, number];
 };
@@ -100,6 +101,7 @@ const BIRTHDAY_CARDS: ReadonlyArray<BirthdayCardConfig> = [
   {
     id: "confetti",
     image: "/card.png",
+    backImage: "/bdaycard.png",
     position: [1, 0.081, -2],
     rotation: [-Math.PI / 2, 0, Math.PI / 3],
   },
@@ -294,6 +296,7 @@ function AnimatedScene({
             key={card.id}
             id={card.id}
             image={card.image}
+            backImage={card.backImage}
             tablePosition={card.position}
             tableRotation={card.rotation}
             isActive={activeCardId === card.id}

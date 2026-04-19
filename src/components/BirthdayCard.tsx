@@ -20,6 +20,7 @@ import {
 type BirthdayCardProps = {
   id: string;
   image: string;
+  backImage?: string; // added
   tablePosition: [number, number, number];
   tableRotation: [number, number, number];
   isActive: boolean;
@@ -37,6 +38,7 @@ const HOVER_LIFT = 0.04;
 export function BirthdayCard({
   id,
   image,
+  backImage, // added
   tablePosition,
   tableRotation,
   isActive,
@@ -55,10 +57,19 @@ export function BirthdayCard({
   useCursor(isHovered || isActive, "pointer");
 
   const texture = useTexture(image);
+  const backTexture = useTexture(backImage || image); // fallback to front if no back provided
+
   useEffect(() => {
     texture.colorSpace = SRGBColorSpace;
     texture.anisotropy = 4;
   }, [texture]);
+
+  useEffect(() => {
+    if (backTexture) {
+      backTexture.colorSpace = SRGBColorSpace;
+      backTexture.anisotropy = 4;
+    }
+  }, [backTexture]);
 
   const defaultPosition = useMemo(
     () => new Vector3(...tablePosition),
@@ -226,16 +237,11 @@ export function BirthdayCard({
           onClick={handleClick}
         >
           <planeGeometry args={[CARD_WIDTH, CARD_HEIGHT]} />
-          <meshStandardMaterial color="#f7f2ff" />
-        </mesh>
-
-        <mesh position={[0, 0, -0.0008]}>
-          <planeGeometry args={[CARD_WIDTH * 0.98, CARD_HEIGHT * 0.98]} />
           <meshStandardMaterial
-            color="#ffffff"
-            side={DoubleSide}
-            roughness={1}
-            metalness={0}
+            map={backTexture}
+            roughness={0.35}
+            metalness={0.05}
+            toneMapped={false}
           />
         </mesh>
 
