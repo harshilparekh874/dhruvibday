@@ -9,7 +9,6 @@ import {
   type ReactNode,
 } from "react";
 import {
-  DoubleSide,
   Euler,
   Group,
   Quaternion,
